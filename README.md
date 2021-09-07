@@ -34,7 +34,7 @@ token = os.getenv('discord_token')
 
 bot = commands.Bot(command_prefix='!')
 
-@bot.even
+@bot.event
 async def on_ready():
     print(f'logged in as "{bot.user.name}"')
 
@@ -43,9 +43,11 @@ async def ping(ctx):
     await ctx.send('pong')
 
 
-lazy_setup(key)
+lazy_setup(key) # don't forget to call this *before* running the bot
 bot.run(token)
 ```
 
 # todo:
+- [X] Upload to pypi
 - [ ] Documentations
+- [ ] Better error handling

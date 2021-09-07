@@ -31,8 +31,10 @@ class UpTimeRobot:
             async with aiohttp.ClientSession(headers=self.headers) as cs:
                 async with cs.post(payload) as r:
                     data = await r.json()
-
-        return [Monitor(m) for m in data['monitors']]
+        if r.status == 200:
+            return [Monitor(m) for m in data.get('monitors',[])]
+        else:
+            raise Exception(f'Something went wrong: {data}')
     
     async def new_monitor(self, friendly_name: str, url: str):
         """Configures a new monitor"""

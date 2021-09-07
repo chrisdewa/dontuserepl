@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "dontuserepl"
+version = "0.1.2"
+description = "Simple tools to deploy a script 24/7 on repl.it using an aiohttp server and automated uptimerobot monitors"
+authors = ["chrisdewa <alexdewa@gmail.com>"]
+readme = "README.md"
+repository = "https://github.com/chrisdewa/dontuserepl"
+license = "MIT"
+classifiers=[
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.8",
+]
+packages = [
+    {include = "dontuserepl"}
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+aiohttp = "3.7.4.post0"
+aiolimiter = "1.0.0b1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

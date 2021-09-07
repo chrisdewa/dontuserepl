@@ -1,2 +1,0 @@
-aiohttp==3.7.4.post0
-aiolimiter==1.0.0b1
