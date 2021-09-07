@@ -48,4 +48,4 @@ bot.run(token)
 ```
 
 # todo:
-[ ] Documentations
+- [ ] Documentations
