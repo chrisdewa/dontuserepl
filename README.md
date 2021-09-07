@@ -49,5 +49,5 @@ bot.run(token)
 
 # todo:
 - [X] Upload to pypi
-- [ ] Documentations
+- [ ] Documentation
 - [ ] Better error handling
