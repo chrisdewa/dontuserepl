@@ -1,0 +1,3 @@
+aiohttp==3.7.4.post0
+flask==2.0.1
+aiolimiter==1.0.0b1
