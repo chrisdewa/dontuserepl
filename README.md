@@ -23,4 +23,29 @@ lazy_setup(key)
 6) That's it, `lazy_setup` runs a minimal aiohttp server on port 8080 and configures a monitor for the script.
 
 
+# Working example
+```python
+import os
+from dontuserepl import lazy_setup
+from discord.ext import commands
 
+key = os.getenv('uptimerobot_api_key')
+token = os.getenv('discord_token')
+
+bot = commands.Bot(command_prefix='!')
+
+@bot.even
+async def on_ready():
+    print(f'logged in as "{bot.user.name}"')
+
+@bot.command()
+async def ping(ctx):
+    await ctx.send('pong')
+
+
+lazy_setup(key)
+bot.run(token)
+```
+
+# todo:
+[ ] Documentations
