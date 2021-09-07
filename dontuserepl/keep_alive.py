@@ -1,20 +1,29 @@
-from flask import Flask
+import asyncio
+
+from aiohttp import web
 from threading import Thread
 
 __all__ = (
     'keep_alive',
 )
 
-app = Flask('')
+def web_server():
+    def main(request):
+        return web.Response(text="I'm alive")
+    app = web.Application()
+    app.add_routes([web.get('/', main)])
+    runner = web.AppRunner(app)
+    return runner
 
-@app.route('/')
-def main():
-    return "I'm alive!"
-
-def run():
-    app.run('0.0.0.0', port=8080)
+def run_server(runner):
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(runner.setup())
+    site = web.TCPSite(runner, '0.0.0.0', 8080)
+    loop.run_until_complete(site.start())
+    loop.run_forever()
 
 def keep_alive():
-    server = Thread(target=run)
+    runner = web_server()
+    server = Thread(target=run_server, args=(runner,))
     server.start()
-
