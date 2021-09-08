@@ -22,6 +22,7 @@ lazy_setup(key)
 ```
 6) That's it, `lazy_setup` runs a minimal aiohttp server on port 8080 and configures a monitor for the script.
 
+Note: The server runs on the main loop since it's fully asynchronous.
 
 # Working example
 ```python

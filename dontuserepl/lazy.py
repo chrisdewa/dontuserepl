@@ -6,13 +6,17 @@ __all__ = (
     'lazy_setup',
 )
 
-def lazy_setup(uptimerobot_api_key: str):
-    """Sets everything up"""
+def pprint(msg):
     prefix = '\033[96mlazy setup:'
     postfix = '\033[0m'
+    print(prefix, msg, postfix)
+
+def lazy_setup(uptimerobot_api_key: str):
+    """Sets everything up"""
     api = UpTimeRobot(uptimerobot_api_key)
-    print(prefix, 'Starting webserver...',postfix)
+    pprint('Starting webserver...')
     keep_alive()
-    print(prefix, 'Setting up UpTimeRobot monitor for this slug',postfix)
-    api.sync_upsert_monitor(friendly_name=f'Bot:{slug}', url=url)
-    print(prefix, 'Lazy Setup complete.', postfix)
+    pprint('Setting up UpTimeRobot monitor for this slug')
+    created = api.sync_upsert_monitor(friendly_name=f'Bot:{slug}', url=url)
+    pprint('New monitor set' if created else 'Monitor for this slug already existed.')
+    pprint('Lazy Setup complete.')

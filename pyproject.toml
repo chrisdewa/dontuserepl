@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dontuserepl"
-version = "0.1.3"
+version = "0.1.4"
 description = "Simple tools to deploy a script 24/7 on repl.it using an aiohttp server and automated uptimerobot monitors"
 authors = ["chrisdewa <alexdewa@gmail.com>"]
 readme = "README.md"

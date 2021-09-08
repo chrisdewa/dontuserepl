@@ -53,16 +53,18 @@ class UpTimeRobot:
         if data['stat'] != 'ok':
             raise Exception(f'Something went wrong |[{r.status}] data:{data}')
     
-    async def upsert_monitor(self, friendly_name: str, url: str):
+    async def upsert_monitor(self, friendly_name: str, url: str) -> bool:
         monitors = await self.get_monitors()
         if not any(
             monitor for monitor in monitors
             if monitor.name == friendly_name or monitor.url == url
         ):
             await self.new_monitor(friendly_name, url)
+            return True
+        return False
     
-    def sync_upsert_monitor(self, friendly_name: str, url: str):
-        asyncio.get_event_loop().run_until_complete(self.upsert_monitor(friendly_name, url))
+    def sync_upsert_monitor(self, friendly_name: str, url: str) -> bool:
+        return asyncio.get_event_loop().run_until_complete(self.upsert_monitor(friendly_name, url))
     
     def sync_get_monitors(self):
         return asyncio.get_event_loop().run_until_complete(self.get_monitors())
