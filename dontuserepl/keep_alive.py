@@ -1,5 +1,5 @@
 import asyncio
-
+from datetime import datetime as dt
 from aiohttp import web
 
 __all__ = (
@@ -7,7 +7,9 @@ __all__ = (
 )
 
 def web_server() -> web.AppRunner:
-    def main(request):
+    def main(request: web.Request):
+        d = dt.utcnow()
+        print(f'\033[93mServer: {d.strftime("%x %X")} | {request.method} | {request.remote}\033[0m')
         return web.Response(text="I'm alive")
         
     app = web.Application()
