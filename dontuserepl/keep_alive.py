@@ -1,13 +1,12 @@
 import asyncio
 
 from aiohttp import web
-from threading import Thread
 
 __all__ = (
     'keep_alive',
 )
 
-def web_server():
+def web_server() -> web.AppRunner:
     def main(request):
         return web.Response(text="I'm alive")
         
